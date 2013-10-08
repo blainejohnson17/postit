@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   def create
     @post = Post.find(params[:post_id])
-    @user = User.find(params[:user_id])
+    @user = User.first
     @comment = @post.comments.new(comment_params)
     @comment.user = @user
 
