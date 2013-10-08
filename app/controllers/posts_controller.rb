@@ -12,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    if post.save
+    @post = Post.new(post_params)
+    if @post.save
       redirect_to posts_path, notice: 'Post was successfully created.'
     else
       render :new
