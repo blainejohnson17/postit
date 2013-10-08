@@ -1,2 +1,10 @@
-<h1><%= @post.title %></h1>
+<%= link_to "edit post", edit_post_path %>
+<h2><%= link_to @post.title, url_with_protocol(@post.url) %></h2>
 <p><%= @post.description %></p>
+<h3>Comments:</h3>
+<% @post.comments.each do |comment| %>
+  <p>
+    <%= comment.body %>
+    by <%= comment.user.username %>
+  </p>
+<% end %>
