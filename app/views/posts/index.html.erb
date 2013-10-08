@@ -1,3 +1,4 @@
+<%= link_to "New post", new_post_path %>
 <% @post.each do |post| %>
     <div><%= link_to post.title, url_with_protocol(post.url) %></div>
 <% end %>
