@@ -1,10 +1,2 @@
 <%= link_to "New post", new_post_path %>
-<% @post.each do |post| %>
-    <div>
-      <h3><%= link_to post.title, url_with_protocol(post.url) %></h3>
-      <p>
-        <%= post.description %>
-        <%= link_to "#{post.comments.count} comments", post %>
-      </p>
-    </div>
-<% end %>
+<%= render 'shared/posts' %>

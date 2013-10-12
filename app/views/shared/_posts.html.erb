@@ -1,0 +1,12 @@
+<% @posts.each do |post| %>
+    <div>
+      <% post.categories.each do |cat| %>
+        <%= link_to cat.name, cat %>
+      <% end %>
+      <h3><%= link_to post.title, url_with_protocol(post.url) %></h3>
+      <p>
+        <%= post.description %>
+        <%= link_to "#{post.comments.count} comments", post %>
+      </p>
+    </div>
+<% end %>
