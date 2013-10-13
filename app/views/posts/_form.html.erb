@@ -1,6 +1,5 @@
-<% if @post.errors.any? %>
 <%= render partial: "shared/error", locals: {obj: @post} %>
-<% end %>
+
 <%= form_for(@post) do |form| %>
   <div>
     <%= form.label :title %>
@@ -14,12 +13,11 @@
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
-  <% for category in Category.all %>
   <div>
-    <%= check_box_tag "post[category_ids][]", category.id, @post.categories.include?(category) %>
-    <%= category.name %>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+    <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
   </div>
-  <% end %>
   <div>
   <%= form.submit "Save" %>
   </div>

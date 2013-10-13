@@ -1,23 +1,12 @@
 <%= link_to "edit post", edit_post_path(@post) %>
-<% @post.categories.each do |cat| %>
-  <%= link_to cat.name, cat %>
-<% end %>
+
+<%= render  partial: "shared/post_categories", locals: {post: @post} %>
+
 <h2><%= link_to @post.title, url_with_protocol(@post.url) %></h2>
 <p><%= @post.description %></p>
-<% if @comment.errors.any? %>
-  <ul>
-    <% @comment.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-<%= form_for ([@post, @comment]) do |form| %>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-  <%= form.submit "Create comment" %>
-<% end %>
+
+<%= render 'posts/comment_form' %>
+
 <h3>Comments:</h3>
 <% @post.comments.each do |comment| %>
   <p>
