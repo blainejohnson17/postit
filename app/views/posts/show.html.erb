@@ -2,15 +2,9 @@
 
 <%= render  partial: "shared/post_categories", locals: {post: @post} %>
 
-<h2><%= link_to @post.title, url_with_protocol(@post.url) %></h2>
+<p class="lead"><%= link_to @post.title, url_with_protocol(@post.url) %></p>
 <p><%= @post.description %></p>
 
 <%= render 'posts/comment_form' %>
 
-<h3>Comments:</h3>
-<% @post.comments.each do |comment| %>
-  <p>
-    <%= comment.body %>
-    by <%= comment.creator.username %>
-  </p>
-<% end %>
+<%= render 'posts/comments' %>
