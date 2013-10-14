@@ -1,0 +1,15 @@
+<%= render "shared/error", obj: @user %>
+
+<%= form_for(@user) do |form| %>
+  <div>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.text_field :password %>
+  </div>
+  <div>
+  <%= form.submit "Save" %>
+  </div>
+<% end %>

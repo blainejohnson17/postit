@@ -1,5 +1,5 @@
 <h3>New Category</h3>
-<%= render partial: "shared/error", locals: {obj: @category} %>
+<%= render "shared/error", obj: @category %>
 <%= form_for @category do |form| %>
     <div>
       <%= form.label :name %>

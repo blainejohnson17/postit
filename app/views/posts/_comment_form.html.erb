@@ -1,4 +1,4 @@
-<%= render partial: "shared/error", locals: {obj: @comment} %>
+<%= render "shared/error", obj: @comment %>
 
 <%= form_for ([@post, @comment]) do |form| %>
   <div>
