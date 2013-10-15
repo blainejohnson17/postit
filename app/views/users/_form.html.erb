@@ -7,9 +7,9 @@
   </div>
   <div>
     <%= form.label :password %>
-    <%= form.text_field :password %>
+    <%= form.password_field :password %>
   </div>
   <div>
-  <%= form.submit "Save" %>
+  <%= form.submit @user.new_record? ? "Register" : "Update" %>
   </div>
 <% end %>
