@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment.creator = current_user
 
     if @comment.save
-      redirect_to post_path(@post), notice: 'Comment was successfully created.'
+      redirect_to @post, notice: 'Comment was successfully created.'
     else
       @post.reload
       render 'posts/show'
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to post_path(params[:post_id]), notice: 'Comment was updated!'
+      redirect_to @post, notice: 'Comment was updated!'
     else
       render :edit
     end

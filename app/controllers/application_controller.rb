@@ -25,8 +25,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :creator?
 
+  def owner?(user)
+    current_user == user
+  end
+  helper_method :owner?
+
   def set_post
     @post = Post.find(params[:post_id] || params[:id])
   end
+
 
 end
