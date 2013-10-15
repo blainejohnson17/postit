@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, except: [:index, :show]
+  before_action :require_user, only: [:new, :create]
+  before_action :require_creator, only: [:edit, :update]
 
   def index
     @posts = Post.all
@@ -36,11 +37,15 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title, :url, :description, :category_ids => [])
-    end
 
-    def set_post
-      @post = Post.find(params[:id])
+  def post_params
+    params.require(:post).permit(:title, :url, :description, :category_ids => [])
+  end
+
+  def require_creator
+    if !creator?(@post)
+      flash[:error] = 'Must be the creator to do that.'
+      redirect_to root_path
     end
+  end
 end

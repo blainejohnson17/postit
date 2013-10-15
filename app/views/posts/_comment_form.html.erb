@@ -5,5 +5,5 @@
     <%= form.label :body, "Leave a comment" %>
     <%= form.text_area :body %>
   </div>
-  <%= form.submit "Create comment" %>
+  <%= form.submit @comment.new_record? ? "Create comment" : "Update comment" %>
 <% end %>

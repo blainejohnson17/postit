@@ -5,6 +5,9 @@
       <%= comment.body %>
     </p>
       by <%= comment.creator.username %> at <%= comment.created_at %>
+      <% if creator?(comment) %>
+      [<%= link_to "edit comment", edit_post_comment_path(@post, comment) %>]
+<% end %>
   </div>
   <br>
 <% end %>

@@ -20,4 +20,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def creator?(obj)
+    current_user == obj.creator
+  end
+  helper_method :creator?
+
+  def set_post
+    @post = Post.find(params[:post_id] || params[:id])
+  end
+
 end
