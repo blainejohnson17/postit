@@ -2,13 +2,20 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-
+  <div class="btn-group nav_item">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <% categories.each do |category| %>
+        <li><%= link_to category.name , category_path(category) %></li>
+      <% end %>
+      <% if logged_in? %>
+        <li><%= link_to 'New Category', new_category_path %></li>
+        <% end %>
+    </ul>
+  </div>
   <% if logged_in? %>
     <li>
       <%= link_to "New post", new_post_path %>
-    </li>
-    <li>
-      <%= link_to 'New Category', new_category_path %>
     </li>
     <div class="btn-group nav_item">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.username %><span class="caret"></span></a>

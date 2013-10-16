@@ -34,5 +34,9 @@ class ApplicationController < ActionController::Base
     @post = Post.find(params[:post_id] || params[:id])
   end
 
+  def categories
+    @categories ||= Category.all
+  end
+  helper_method :categories
 
 end
