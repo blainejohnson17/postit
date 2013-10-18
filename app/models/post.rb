@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :categorizations
   has_many :categories, :through => :categorizations
+  has_many :votes, as: :voteable
 
   validates :title, presence: true
   validates :url, presence: true
