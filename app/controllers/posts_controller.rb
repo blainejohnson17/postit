@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, only: [:new, :create]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
+  before_action :require_user, only: [:new, :create, :vote]
   before_action :require_creator, only: [:edit, :update]
 
   def index
@@ -34,6 +34,11 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def vote
+    vote = @post.votes.create(creator: current_user, vote: params[:vote])
+    redirect_to :back
   end
 
   private
