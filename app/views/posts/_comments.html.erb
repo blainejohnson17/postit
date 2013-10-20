@@ -1,9 +1,11 @@
 <h3><%= "Comment".pluralize(@post.comments.count) %>:</h3>
 <% @post.comments.each do |comment| %>
   <div>
+    <% if logged_in? %>
       <%= link_to '+', vote_post_comment_path(@post, comment, vote: 'true'), method: 'post' %>
-      <%= comment.total_votes %>
       <%= link_to '-', vote_post_comment_path(@post, comment, vote: 'false'), method: 'post' %>
+    <% end %>
+    <%= comment.total_votes %>
     <p>
       <%= comment.body %>
     </p>

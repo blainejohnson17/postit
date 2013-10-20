@@ -1,8 +1,10 @@
 <% @posts.each do |post| %>
     <div>
-      <%= link_to '+', vote_post_path(post, vote: 'true'), method: 'post' %>
+      <% if logged_in? %>
+        <%= link_to '+', vote_post_path(post, vote: 'true'), method: 'post' %>
+        <%= link_to '-', vote_post_path(post, vote: 'false'), method: 'post' %>
+      <% end %>
       <%= post.total_votes %>
-      <%= link_to '-', vote_post_path(post, vote: 'false'), method: 'post' %>
       <%= render  "shared/post_categories", post: post %>
       <h4><%= link_to post.title, url_with_protocol(post.url) %></h4>
       <p><%= post.description %></p>
