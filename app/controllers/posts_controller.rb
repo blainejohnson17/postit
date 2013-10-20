@@ -37,7 +37,10 @@ class PostsController < ApplicationController
   end
 
   def vote
-    vote = @post.votes.create(creator: current_user, vote: params[:vote])
+    vote = @post.votes.new(creator: current_user, vote: params[:vote])
+    if !vote.save
+      flash[:error] = 'You can only vote once per entry'
+    end
     redirect_to :back
   end
 

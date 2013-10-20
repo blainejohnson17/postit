@@ -29,7 +29,10 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    vote = @comment.votes.create(creator: current_user, vote: params[:vote])
+    vote = @comment.votes.new(creator: current_user, vote: params[:vote])
+    if !vote.save
+      flash[:error] = 'You can only vote once per entry'
+    end
     redirect_to :back
   end
 
