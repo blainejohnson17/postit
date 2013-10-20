@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create, :edit, :update]
-  before_action :set_comment, only: [:edit, :update]
-  before_action :require_user, only: [:create]
+  before_action :set_post, only: [:create, :edit, :update, :vote]
+  before_action :set_comment, only: [:edit, :update, :vote]
+  before_action :require_user, only: [:create, :vote]
   before_action :require_creator, only: [:edit, :update]
 
   def create
@@ -26,6 +26,11 @@ class CommentsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def vote
+    vote = @comment.votes.create(creator: current_user, vote: params[:vote])
+    redirect_to :back
   end
 
   private

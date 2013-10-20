@@ -38,5 +38,4 @@ class ApplicationController < ActionController::Base
     @categories ||= Category.all
   end
   helper_method :categories
-
 end

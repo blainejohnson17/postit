@@ -1,6 +1,7 @@
 <% if creator?(@post) %>
   [<%= link_to "edit post", edit_post_path(@post) %>]
 <% end %>
+
 <%= render "shared/post_categories", post: @post %>
 
 <p class="lead"><%= link_to @post.title, url_with_protocol(@post.url) %></p>
