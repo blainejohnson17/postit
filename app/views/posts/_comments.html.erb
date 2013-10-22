@@ -3,6 +3,7 @@
   <div>
     <% if logged_in? %>
       <%= link_to '+', vote_post_comment_path(@post, comment, vote: 'true'), method: 'post' %>
+      |
       <%= link_to '-', vote_post_comment_path(@post, comment, vote: 'false'), method: 'post' %>
     <% end %>
     <%= comment.total_votes %>

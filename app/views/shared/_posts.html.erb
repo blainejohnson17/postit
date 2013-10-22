@@ -2,6 +2,7 @@
     <div>
       <% if logged_in? %>
         <%= link_to '+', vote_post_path(post, vote: 'true'), method: 'post' %>
+        |
         <%= link_to '-', vote_post_path(post, vote: 'false'), method: 'post' %>
       <% end %>
       <%= post.total_votes %>
