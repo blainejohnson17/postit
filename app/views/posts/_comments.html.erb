@@ -6,7 +6,7 @@
       |
       <%= link_to '-', vote_post_comment_path(@post, comment, vote: 'false'), method: 'post', remote: true %>
     <% end %>
-    <%= comment.total_votes %>
+    <span id='<%="comment_#{comment.id}_votes"%>'><%= comment.total_votes %></span>
     <p>
       <%= comment.body %>
     </p>
