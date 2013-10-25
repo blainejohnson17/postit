@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_creator, only: [:edit, :update]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse 
   end
 
   def show
@@ -37,11 +37,17 @@ class PostsController < ApplicationController
   end
 
   def vote
-    vote = @post.votes.new(creator: current_user, vote: params[:vote])
-    if !vote.save
-      flash[:error] = 'You can only vote once per entry'
+    @vote = @post.votes.create(creator: current_user, vote: params[:vote])
+
+    respond_to do |format|
+      format.html {
+        if !@vote.save
+          flash[:error] = 'You can only vote once per entry'
+        end
+        redirect_to :back
+      }
+      format.js
     end
-    redirect_to :back
   end
 
   private
