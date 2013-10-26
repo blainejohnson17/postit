@@ -29,9 +29,8 @@ class ApplicationController < ActionController::Base
     current_user == user
   end
   helper_method :owner?
-
   def set_post
-    @post = Post.find(params[:post_id] || params[:id])
+    @post = Post.find_by(slug: (params[:post_id] || params[:id]))
   end
 
   def categories
