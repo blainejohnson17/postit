@@ -8,6 +8,18 @@
 <p><%= @post.description %></p>
 
 <% if logged_in? %>
-  <%= render 'posts/comment_form' %>
+  <%= render "shared/error", obj: @comment %>
+
+  <%= form_for ([@post, @comment]) do |form| %>
+    <div>
+      <%= form.label :body, "Leave a comment" %>
+      <%= form.text_area :body %>
+    </div>
+    <%= form.submit @comment.new_record? ? "Create comment" : "Update comment" %>
+  <% end %>
 <% end %>
-<%= render 'posts/comments' %>
+
+<h3><%= "Comment".pluralize(@post.comments.count) %>:</h3>
+<% @post.comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>  
