@@ -1,2 +1,4 @@
 <p class="lead">All Posts</p>
-<%= render 'shared/posts' %>
+<% @posts.each do |post| %>
+  <%= render 'shared/post', post: post %>
+<% end %>
