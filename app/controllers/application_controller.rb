@@ -14,10 +14,21 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def require_user
-    if !logged_in?
-      flash[:error] = 'Must be logged in to do that.'
-      redirect_to root_path
-    end
+    access_denied unless logged_in?
+  end
+
+  def admin?
+    current_user.role == 'admin'
+  end
+  helper_method :admin?
+
+  def require_admin
+    access_denied unless admin?
+  end
+
+  def access_denied
+    flash[:error] = 'Must be logged in to do that.'
+    redirect_to root_path
   end
 
   def creator?(obj)
@@ -29,6 +40,7 @@ class ApplicationController < ActionController::Base
     current_user == user
   end
   helper_method :owner?
+
   def set_post
     @post = Post.find_by(slug: (params[:post_id] || params[:id]))
   end
