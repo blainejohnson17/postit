@@ -5,7 +5,6 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :categorizations, dependent: :destroy
   has_many :categories, :through => :categorizations
-  has_many :votes, as: :voteable, dependent: :destroy
 
   validates :title, presence: true
   validates :url, presence: true
