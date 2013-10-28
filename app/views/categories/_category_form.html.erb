@@ -1,0 +1,12 @@
+<%= render "shared/error", obj: @category %>
+<%= form_for @category do |form| %>
+    <div>
+      <%= form.label :name %>
+    </div>
+    <div>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.submit "Save Category" %>
+    </div>
+<% end %>
