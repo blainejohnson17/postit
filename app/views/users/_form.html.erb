@@ -9,6 +9,10 @@
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
+  <div>
+    <%= form.label :time_zone %>
+    <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+  </div>
   <% if admin? %>
     <div>
       <%= form.label :admin %>

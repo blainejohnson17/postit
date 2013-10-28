@@ -46,9 +46,9 @@ class UsersController < ApplicationController
 
   def user_params
     if admin?
-      params.require(:user).permit(:username, :password, :admin)
+      params.require(:user).permit(:username, :password, :time_zone, :admin)
     else
-      params.require(:user).permit(:username, :password)
+      params.require(:user).permit(:username, :password, :time_zone)
     end
   end
 
