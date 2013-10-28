@@ -9,6 +9,12 @@
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
+  <% if admin? %>
+    <div>
+      <%= form.label :admin %>
+      <%= form.check_box :admin %>
+    </div>
+  <% end %>
   <div>
   <%= form.submit @user.new_record? ? "Register" : "Update" %>
   </div>

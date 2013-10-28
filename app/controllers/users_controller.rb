@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, except: [:new, :create]
   before_action :require_owner, only: [:edit, :update]
+  before_action :require_admin, only: [:index, :destroy]
+
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
@@ -32,10 +37,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to :back
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    if admin?
+      params.require(:user).permit(:username, :password, :admin)
+    else
+      params.require(:user).permit(:username, :password)
+    end
   end
 
   def set_user
@@ -43,9 +57,6 @@ class UsersController < ApplicationController
   end
 
   def require_owner
-    if !owner?(@user)
-      flash[:error] = 'You must own the profile to do that.'
-      redirect_to root_path
-    end
+    access_denied unless owner?(@user)
   end
 end

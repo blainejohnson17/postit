@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    current_user.role == 'admin'
+    current_user && current_user.admin
   end
   helper_method :admin?
 
@@ -27,17 +27,17 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    flash[:error] = 'Must be logged in to do that.'
+    flash[:error] = "You don't have proper permissions to do that."
     redirect_to root_path
   end
 
   def creator?(obj)
-    current_user == obj.creator
+    current_user == obj.creator || admin?
   end
   helper_method :creator?
 
   def owner?(user)
-    current_user == user
+    current_user == user || admin? 
   end
   helper_method :owner?
 
