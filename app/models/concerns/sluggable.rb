@@ -10,8 +10,10 @@ module Sluggable
   def generate_slug!
     str = to_slug(self.send(self.class.slug_column.to_sym))
     count = 2
+    dash = "-"
     obj = self.class.where(slug: str).first
     while obj && obj != self
+      str.chop!.chop! if count > 2
       str = str + "-" + count.to_s
       obj = self.class.where(slug: str).first
       count += 1
