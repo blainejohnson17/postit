@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  include Sluggable
+  include SluggableBlaine
   has_many :categorizations, dependent: :destroy
   has_many :posts, :through => :categorizations
 
