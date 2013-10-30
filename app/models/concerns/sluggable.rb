@@ -9,16 +9,17 @@ module Sluggable
 
   def generate_slug!
     str = to_slug(self.send(self.class.slug_column.to_sym))
+    new_str = str
     count = 2
     dash = "-"
     obj = self.class.where(slug: str).first
     while obj && obj != self
-      str.chop!.chop! if count > 2
-      str = str + "-" + count.to_s
-      obj = self.class.where(slug: str).first
+      new_str.gsub!(/(.*)(-)(.*)/, str) if count > 2
+      new_str = new_str + "-" + count.to_s
+      obj = self.class.where(slug: new_str).first
       count += 1
     end
-    self.slug = str.downcase
+    self.slug = new_str.downcase
   end
 
   def to_slug(name)
