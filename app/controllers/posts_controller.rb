@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   before_action :require_creator, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all.sort_by{|x| x.total_votes}.reverse 
+    #@posts = Post.all.sort_by{|x| x.total_votes}.reverse 
+    @posts = Post.paginate(:page => params[:page])
+    binding.pry
   end
 
   def show
