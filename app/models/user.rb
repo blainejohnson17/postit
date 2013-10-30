@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include SluggableBlaine
+  include Sluggable
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create, length: {minimum: 3}
 
   sluggable_column :username
+
 end

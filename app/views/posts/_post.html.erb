@@ -1,14 +1,30 @@
-  <div>
-    <% if logged_in? %>
-      <%= link_to '+', vote_post_path(post, vote: 'true'), method: 'post', remote: true %>
-      |
-      <%= link_to '-', vote_post_path(post, vote: 'false'), method: 'post', remote: true %>
+<div class="row">
+  <div class='span8 well'>
+    <% if creator?(post) %>
+      <div class="dropdown pull-right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-chevron-down"></i></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><%= link_to "edit post", edit_post_path(post), "tabindex" => "-1" %></li>
+            <li><%= link_to 'delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>  
+        </ul>
+      </div>
     <% end %>
-    <span id='<%="post_#{post.id}_votes"%>'><%= post.total_votes %></span>
-    <%= render  "shared/post_categories", post: post %>
-    <h4><%= link_to post.title, url_with_protocol(post.url) %></h4>
-    <p><%= post.description %></p>
-    <p>Posted by <%= link_to post.creator.username, user_path(post.creator) %> at <%= display_datetime(post.created_at) %></p>
-  <%= link_to pluralize(post.comments.count, "comment"), post %>
+    <%= render 'shared/vote', obj: post %>
+    <div>
+      <%= render post.categories %>
+      <h4><%= link_to post.title, url_with_protocol(post.url) %></h4>
+      <p>
+        <%= post.description %>
+      </p>
+      <p>
+        <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
+        <small> at <%= display_datetime(post.created_at) %></small>
+      </p>
+      <small>
+        <span>
+          <%= link_to pluralize(post.comments.count, "comment"), post %>
+        </span>
+      </small>
+    </div> 
   </div>
-  <br>
+</div>

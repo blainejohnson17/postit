@@ -1,16 +1,14 @@
-<div>
-  <% if logged_in? %>
-    <%= link_to '+', vote_post_comment_path(@post, comment, vote: 'true'), method: 'post', remote: true %>
-    |
-    <%= link_to '-', vote_post_comment_path(@post, comment, vote: 'false'), method: 'post', remote: true %>
-  <% end %>
-  <span id='<%="comment_#{comment.id}_votes"%>'><%= comment.total_votes %></span>
-  <p>
-    <%= comment.body %>
-  </p>
-    by <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= comment.created_at %>
-    <% if creator?(comment) %>
-      [<%= link_to "edit comment", edit_post_comment_path(@post, comment) %>]
-    <% end %>
-</div>
+<% show_post ||= false %>
 
+<div class="row" >
+  <div class='well span8'>
+    <%= render 'shared/vote', obj: comment %>
+    <em>"<%= comment.body %>"</em>
+    <% if show_post %>
+      on <%= link_to comment.post.title, post_path(comment.post) %>
+    <% end %>
+    <br/>
+    <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+    <small> at <%= display_datetime(comment.created_at) %></small>
+  </div>
+</div>

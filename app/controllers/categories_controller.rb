@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :require_admin, except: [:show]
 
   def show
-    @posts = @category.posts
+    
   end
 
   def new

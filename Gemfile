@@ -13,8 +13,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '=3.0.1'
-gem 'voteable_blaine', path: '/Users/mymac/Repos/my-gems/voteable-gem'
-gem 'sluggable_blaine', path: '/Users/mymac/Repos/my-gems/sluggable-gem'
 
 group :doc do
   gem 'sdoc', require: false

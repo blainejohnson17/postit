@@ -5,17 +5,11 @@ PostitTemplate::Application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  post '/posts/:id/vote', to: 'posts#vote', as: 'vote_post'
+  post '/comments/:id/vote', to: 'comments#vote', as: 'vote_comment'
 
   resources :posts do
-    member do
-      post 'vote'
-    end
-
-    resources :comments, only: [:create, :edit, :update] do
-      member do
-        post 'vote'
-      end
-    end
+    resources :comments, only: [:create, :edit, :update]
   end
 
   resources :categories, only: [:show, :new, :create, :edit, :update]

@@ -1,6 +1,7 @@
-<%= @category.name %>
-<%= link_to '[edit]', edit_category_path(@category) %>
+<% header = (link_to("All Posts", posts_path) + " &raquo; #{@category.name}".html_safe)%>
+<%= render 'shared/content_title', title: header %>
+<%= link_to '[edit]', edit_category_path(@category) if admin? %>
   
-<% @posts.each do |post| %>
+<% @category.posts.each do |post| %>
   <%= render 'posts/post', post: post %>
 <% end %>

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :vote]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :vote]
   before_action :require_user, only: [:new, :create, :vote]
-  before_action :require_creator, only: [:edit, :update]
+  before_action :require_creator, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.sort_by{|x| x.total_votes}.reverse 
@@ -34,6 +34,11 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to :back
   end
 
   def vote
