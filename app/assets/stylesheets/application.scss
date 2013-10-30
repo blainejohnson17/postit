@@ -14,7 +14,11 @@
 
  @import "bootstrap";
 
- .container {
+body {
+  margin-top: 41px;
+}
+
+.container {
   margin-left: 135px
 }
 
@@ -51,4 +55,8 @@ ul.post-nav {
 
 div.well p {
   margin-bottom: 0px;
+}
+
+p.lead {
+  margin-top: 20px;
 }
