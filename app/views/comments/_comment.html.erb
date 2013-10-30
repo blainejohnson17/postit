@@ -1,14 +1,21 @@
 <% show_post ||= false %>
 
-<div class="row" >
-  <div class='well span8'>
-    <%= render 'shared/vote', obj: comment %>
-    <em>"<%= comment.body %>"</em>
-    <% if show_post %>
-      on <%= link_to comment.post.title, post_path(comment.post) %>
-    <% end %>
-    <br/>
-    <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
-    <small> at <%= display_datetime(comment.created_at) %></small>
-  </div>
+<div class='well well-small span8'>
+  <% if creator?(comment) %>
+    <div class="dropdown pull-right">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-chevron-down"></i></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li><%= link_to "edit comment", edit_post_comment_path(comment.post, comment), "tabindex" => "-1" %></li>
+          <li><%= link_to 'delete comment', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %></li>  
+      </ul>
+    </div>
+  <% end %>
+  <%= render 'shared/vote', obj: comment %>
+  <em>"<%= comment.body %>"</em>
+  <% if show_post %>
+    on <%= link_to comment.post.title, post_path(comment.post) %>
+  <% end %>
+  <br/>
+  <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+  <small> at <%= display_datetime(comment.created_at) %></small>
 </div>

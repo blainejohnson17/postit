@@ -9,7 +9,7 @@ PostitTemplate::Application.routes.draw do
   post '/comments/:id/vote', to: 'comments#vote', as: 'vote_comment'
 
   resources :posts do
-    resources :comments, only: [:create, :edit, :update]
+    resources :comments, only: [:create, :edit, :update, :destroy]
   end
 
   resources :categories, only: [:show, :new, :create, :edit, :update]

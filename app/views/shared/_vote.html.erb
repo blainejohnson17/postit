@@ -1,11 +1,11 @@
-<div class='span1 text-center'>
+<div class='span1 text-center vote'>
   <% if logged_in? %>
     <%= link_to polymorphic_path([:vote, obj], vote: true), method: 'post', remote: true  do %>
       <i class='icon-arrow-up'></i>
     <% end %>
     <br/>
   <% end %>
-  <span id='<%="#{obj.class.name.downcase}_#{obj.id}_votes"%>'><%= obj.total_votes %></span> votes
+  <span id='<%="#{obj.class.name.downcase}_#{obj.id}_votes"%>'><%= obj.total_votes %></span>
   <br/>
   <% if logged_in? %>
     <%= link_to polymorphic_path([:vote, obj], vote: false), method: 'post', remote: true do %>

@@ -1,10 +1,17 @@
+<% header = (link_to("All Posts", posts_path) + " &raquo; #{@post.title}".html_safe)%>
+<%= render 'shared/content_title', title: header %>
+
 <%= render 'post', post: @post %>
 
+<div class="span10">
+  <h4><%= "Comment".pluralize(@post.comments.count) %>:</h4>
+  <hr/>
+</div>
 <% if logged_in? %>
   <%= render 'comments/comment_form' %>
 <% end %>
 
-<h3><%= "Comment".pluralize(@post.comments.count) %>:</h3>
+
 <% @post.comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
 <% end %>  

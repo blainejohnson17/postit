@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create, :edit, :update]
-  before_action :set_comment, only: [:edit, :update]
+  before_action :set_post, only: [:create, :edit, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :require_user, only: [:create, :vote]
   before_action :require_creator, only: [:edit, :update]
 
@@ -26,6 +26,11 @@ class CommentsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_to :back
   end
 
   def vote
