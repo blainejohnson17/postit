@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:index, :destroy]
 
   def index
-    @users = User.all
+    @users =  User.paginate(params[:page]).order('created_at DESC')
   end
 
   def new
@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @posts =  @user.posts.paginate(:page => params[:posts_page], :per_page => 10).order('created_at DESC')
+    @comments = @user.comments.paginate(:page => params[:comments_page], :per_page => 10).order('created_at DESC')
   end
 
   def create
