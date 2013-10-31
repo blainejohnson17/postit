@@ -13,6 +13,7 @@
  */
 
  @import "bootstrap";
+ @import "bootstrap-responsive";
 
 body {
   margin-top: 41px;
@@ -22,17 +23,8 @@ body {
   margin-left: 135px
 }
 
-.navbar .nav > li > a.brand {
-  padding-left: 0px;
-}
-
 .quiet {
   color: #ababab;
-}
-
-div.nav_item {
-  margin-left: 25px;
-  float: left;
 }
 
 .label  {
