@@ -1,26 +1,24 @@
 <% header = (link_to("All Posts", posts_path) + " &raquo; Users &raquo; #{@user.username}".html_safe)%>
 <%= render 'shared/content_title', title: header %>
-<div class="span10">
-  <h5><%= @user.username %>'s Activity</h5>
-  <div class="tabbable"> 
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Posts (<%= @user.posts.size %>)</a></li>
-      <li><a href="#tab2" data-toggle="tab">Comments (<%= @user.comments.size %>)</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab1">
-        <p>
+<div class="row-fluid">
+  <div class="span10">
+    <h5><%= @user.username %>'s Activity</h5>
+    <div class="tabbable"> 
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Posts (<%= @user.posts.size %>)</a></li>
+        <li><a href="#tab2" data-toggle="tab">Comments (<%= @user.comments.size %>)</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
           <% @user.posts.each do |post| %>
             <%= render 'posts/post', post: post %>
           <% end %>
-        </p>
-      </div>
-      <div class="tab-pane" id="tab2">
-        <p>
+        </div>
+        <div class="tab-pane" id="tab2">
           <% @user.comments.each do |comment| %>
             <%= render 'comments/comment', comment: comment, show_post: true %>
           <% end %>
-        </p>
+        </div>
       </div>
     </div>
   </div>

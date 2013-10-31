@@ -1,17 +1,27 @@
-<% header = (link_to("All Posts", posts_path) + " &raquo; #{@post.title}".html_safe)%>
-<%= render 'shared/content_title', title: header %>
-
-<%= render 'post', post: @post %>
-
-<div class="span10">
-  <h4><%= "Comment".pluralize(@post.comments.count) %>:</h4>
-  <hr/>
+<div class="row-fluid">
+  <% header = (link_to("All Posts", posts_path) + " &raquo; #{@post.title}".html_safe)%>
+  <%= render 'shared/content_title', title: header %>
 </div>
-<% if logged_in? %>
-  <%= render 'comments/comment_form' %>
-<% end %>
 
+<div class="row-fluid">
+  <div class="span10">
+    <%= render 'post', post: @post %>
+  </div>
+</div>
 
-<% @post.comments.each do |comment| %>
-  <%= render 'comments/comment', comment: comment %>
-<% end %>  
+<div class="row-fluid">
+  <div class="span9">
+    <h4><%= "Comment".pluralize(@post.comments.count) %>:</h4>
+    <hr/>
+    <% if logged_in? %>
+      <%= render 'comments/comment_form' %>
+    <% end %>
+    <div class="row-fluid">
+      <div class="span11">
+        <% @post.comments.each do |comment| %>
+          <%= render 'comments/comment', comment: comment %>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+</div>

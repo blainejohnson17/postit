@@ -1,23 +1,25 @@
-<div class="well well-small span10">    
-  <% if creator?(post) %>
-    <div class="dropdown pull-right">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-chevron-down"></i></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><%= link_to "edit post", edit_post_path(post), "tabindex" => "-1" %></li>
-          <li><%= link_to 'delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>  
+<div class="fluid-row">
+  <div class="well well-small span12">    
+    <% if creator?(post) %>
+      <div class="dropdown pull-right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-chevron-down"></i></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><%= link_to "edit post", edit_post_path(post), "tabindex" => "-1" %></li>
+            <li><%= link_to 'delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>  
+        </ul>
+      </div>
+    <% end %>
+    <%= render 'shared/vote', obj: post %>
+    <div class="span6">
+      <p><%= link_to post.title, url_with_protocol(post.url) %></p>
+      <p>
+        <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
+        <small> at <%= display_datetime(post.created_at) %></small>
+      </p>
+      <ul class="nav post-nav">
+        <li><small><span><%= link_to pluralize(post.comments.count, "comment"), post %></span></small></li>
+        <li><%= render post.categories %></li>
       </ul>
-    </div>
-  <% end %>
-  <%= render 'shared/vote', obj: post %>
-  <div class="span6">
-    <p><%= link_to post.title, url_with_protocol(post.url) %></p>
-    <p>
-      <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
-      <small> at <%= display_datetime(post.created_at) %></small>
-    </p>
-    <ul class="nav post-nav">
-      <li><small><span><%= link_to pluralize(post.comments.count, "comment"), post %></span></small></li>
-      <li><%= render post.categories %></li>
-    </ul>
-  </div> 
+    </div> 
+  </div>
 </div>

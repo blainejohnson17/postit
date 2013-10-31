@@ -1,13 +1,14 @@
-<div class="span10">
+<div class="row-fluid">
+  <div class="span12">
+    <%= render "shared/error", obj: @comment %>
 
-  <%= render "shared/error", obj: @comment %>
-
-  <%= form_for ([@post, @comment]) do |form| %>
-    <div>
-      <%= form.text_area :body %>
-    </div>
-    <div>
-      <%= form.submit @comment.new_record? ? "Create comment" : "Update comment" %>
-    </div>
-  <% end %>
+    <%= form_for ([@post, @comment]) do |form| %>
+      <div>
+        <%= form.text_area :body %>
+      </div>
+      <div>
+        <%= form.submit @comment.new_record? ? "Create comment" : "Update comment" %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,7 +1,15 @@
-<%= render 'shared/content_title', title: 'All Posts' %>
-<% @posts.each do |post| %>
-  <%= render 'post', post: post %>
-<% end %>
-<div class="span10 text-center">
-  <%= will_paginate @posts %>
+<div class="fluid-row">
+  <%= render 'shared/content_title', title: 'All Posts' %>
+</div>
+<div class="fluid-row">
+  <div class="span10">
+    <% @posts.each do |post| %>
+      <%= render 'post', post: post %>
+    <% end %>
+    <div class="row-fluid">
+      <div class="span12 text-center">
+        <%= will_paginate @posts %>
+      </div>
+    </div>
+  </div>
 </div>
