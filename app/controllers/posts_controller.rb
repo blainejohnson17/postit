@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @comments = @post.comments.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   def new

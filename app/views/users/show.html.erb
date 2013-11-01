@@ -13,13 +13,13 @@
           <% @posts.each do |post| %>
             <%= render 'posts/post', post: post %>
           <% end %>
-          <%= will_paginate @posts, param_name: :posts_page, params: {tab: nil} %>
+          <%= will_paginate @posts, param_name: :posts_page, renderer: BootstrapPagination::Rails, params: {tab: nil} %>
         </div>
         <div class="tab-pane <%= 'active' if params[:tab] == 'tab2' %>" id="tab2">
           <% @comments.each do |comment| %>
             <%= render 'comments/comment', comment: comment, show_post: true %>
           <% end %>
-          <%= will_paginate @comments, param_name: :comments_page, params: {tab: 'tab2'} %>
+          <%= will_paginate @comments, param_name: :comments_page, renderer: BootstrapPagination::Rails, params: {tab: 'tab2'} %>
         </div>
       </div>
     </div>

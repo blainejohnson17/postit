@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '=3.0.1'
 gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate-bootstrap', '0.2.5'
 
 group :doc do
   gem 'sdoc', require: false

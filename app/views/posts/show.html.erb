@@ -18,9 +18,10 @@
     <% end %>
     <div class="row-fluid">
       <div class="span11">
-        <% @post.comments.each do |comment| %>
+        <% @comments.each do |comment| %>
           <%= render 'comments/comment', comment: comment %>
         <% end %>  
+        <%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
       </div>
     </div>
   </div>
